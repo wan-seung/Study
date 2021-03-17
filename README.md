@@ -3,6 +3,7 @@
 Algorithms & to do list
 
 -- skills --
+
 HTML, CSS, VanillaJS, ReactJs, etc...
 
 
