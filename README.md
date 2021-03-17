@@ -1,3 +1,9 @@
-# Algorithms Study
+# Study
 
-Daily Algorithms challenge 아자아자
+Algorithms & to do list
+
+-- skills --
+HTML, CSS, VanillaJS, ReactJs, etc...
+
+
+아자아자
