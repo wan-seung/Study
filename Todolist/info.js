@@ -39,13 +39,13 @@ v8 > Chrome, Opera
 // console.log(typeof alert);
 
 // let result = prompt('당신의 이름을 입력해주세요', [undefined]);
-// let result = prompt('골라주세요', ['']);
-// console.log(result + '님 감사합니다');
+let result = prompt('골라주세요', ['']);
+console.log(result + '님 감사합니다');
 // alert(result);
 
-// let resultChoice = confirm('선택하신게 맞나요?');
+let resultChoice = confirm('선택하신게 맞나요?');
 
-// console.log(resultChoice);
+console.log(resultChoice);
 
 // let value = false;
 // alert(typeof value);
@@ -163,50 +163,51 @@ v8 > Chrome, Opera
 //   alert('정답은 ECMAScript 입니다');
 // }
 
-let number = prompt('숫자를 입력해 주세요', 0);
-if (number > 0) {
-  alert(1);
-}
-if (number < 0) {
-  alert(-1);
-} else {
-  alert(0);
-}
+// let number = prompt('숫자를 입력해 주세요', 0);
+// if (number > 0) {
+//   alert(1);
+// }
+// if (number < 0) {
+//   alert(-1);
+// } else {
+//   alert(0);
+// }
 
-let result;
+// let result;
 
-if (a + b < 4) {
-  result = '미만';
-} else {
-  result = '이상';
-}
+// if (a + b < 4) {
+//   result = '미만';
+// } else {
+//   result = '이상';
+// }
 
-let result = a + b < 4 ? '미만' : '이상';
+// let result = a + b < 4 ? '미만' : '이상';
 
-let message;
+// let message;
 
-if (login == '직원') {
-  message = '안녕하세요.';
-} else if (login == '임원') {
-  message = '환영합니다.';
-} else if (login == '') {
-  message = '로그인이 필요합니다.';
-} else {
-  message = '';
-}
+// if (login == '직원') {
+//   message = '안녕하세요.';
+// } else if (login == '임원') {
+//   message = '환영합니다.';
+// } else if (login == '') {
+//   message = '로그인이 필요합니다.';
+// } else {
+//   message = '';
+// }
 
-let message =
-  login == '직원'
-    ? (message = '안녕하세요.')
-    : login == '임원'
-    ? (message = '환영합니다.')
-    : login == ''
-    ? (message = '로그인이 필요합니다.')
-    : (message = '');
+// let message =
+//   login == '직원'
+//     ? (message = '안녕하세요.')
+//     : login == '임원'
+//     ? (message = '환영합니다.')
+//     : login == ''
+//     ? (message = '로그인이 필요합니다.')
+//     : (message = '');
 
-import { a, b, c } from 'app.js';
+// import { a, b, c } from 'app.js';
 
 // result = value1 || value2 || value3;
+// result = value1 ?? value2 ?? value3;
 
 // 가장 왼쪽 피연산자부터 시작해 오른쪽으로 나아가며 피연산자를 평가합니다.
 // 각 피연산자를 불린형으로 변환합니다.
@@ -223,3 +224,11 @@ import { a, b, c } from 'app.js';
 // 변환 전 원래 값을 반환합니다.
 // 피연산자 모두가 평가되는 경우(모든 피연산자가 true로
 // 평가되는 경우)엔 마지막 피연산자가 반환됩니다.
+
+// &&를 if문을 짧게 쓰는 용도로 사용하지 말자.
+
+// Boolean  !!
+
+let age;
+if (age >= 14 && age <= 90) {
+}
