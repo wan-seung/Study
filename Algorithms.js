@@ -67,3 +67,58 @@ var shuffle = function (nums, n) {
   }
   return result;
 };
+
+// 1748. Sum of Unique Elements
+
+// You are given an integer array nums. The unique elements of an array are the elements that appear exactly once in the array.
+
+// Return the sum of all the unique elements of nums.
+
+// Example 1:
+
+// Input: nums = [1,2,3,2]
+// Output: 4
+// Explanation: The unique elements are [1,3], and the sum is 4.
+
+var sumOfUnique = function (nums) {
+  let sum = 0;
+  let count = {};
+  for (let i = 0; i < nums.length; i++) {
+    count[nums[i]] ? (count[nums[i]] += 1) : (count[nums[i]] = 1);
+  }
+  let countEntries = Object.entries(count);
+  for (let j = 0; j < countEntries.length; j++) {
+    if (countEntries[j][1] === 1) {
+      sum += Number(countEntries[j][0]);
+    }
+  }
+  return sum;
+};
+
+// 1342. Number of Steps to Reduce a Number to Zero
+
+// Given a non-negative integer num, return the number of steps to reduce it to zero.
+// If the current number is even, you have to divide it by 2, otherwise, you have to subtract 1 from it.
+
+// Example 1:
+
+// Input: num = 14
+// Output: 6
+// Explanation:
+// Step 1) 14 is even; divide by 2 and obtain 7.
+// Step 2) 7 is odd; subtract 1 and obtain 6.
+// Step 3) 6 is even; divide by 2 and obtain 3.
+// Step 4) 3 is odd; subtract 1 and obtain 2.
+// Step 5) 2 is even; divide by 2 and obtain 1.
+// Step 6) 1 is odd; subtract 1 and obtain 0.
+
+var numberOfSteps = function (num) {
+  let count = 0;
+  const countStep = (num, count) => {
+    if (num === 0) return count;
+    return num % 2 === 0
+      ? countStep(num / 2, count + 1)
+      : countStep(num - 1, count + 1);
+  };
+  return countStep(num, count);
+};
