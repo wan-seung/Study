@@ -122,3 +122,21 @@ var numberOfSteps = function (num) {
   };
   return countStep(num, count);
 };
+
+// factorial
+
+// 재귀함수
+const factorial = num => {
+  if (num === 0) return 0;
+  if (num === 1) return 1; //재귀에서 basecase
+  return (num *= factorial(num - 1));
+};
+
+const factorial2 = num => {
+  let result;
+  num === 0 ? (result = 0) : (result = 1);
+  for (let i = num; i > 0; i--) {
+    result *= i;
+  }
+  return result;
+};
