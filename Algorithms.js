@@ -140,3 +140,33 @@ const factorial2 = num => {
   }
   return result;
 };
+
+// 1672. Richest Customer Wealth
+
+//Example 2:
+
+// Input: accounts = [[1,5],[7,3],[3,5]]
+// Output: 10
+// Explanation:
+// 1st customer has wealth = 6
+// 2nd customer has wealth = 10
+// 3rd customer has wealth = 8
+// The 2nd customer is the richest with a wealth of 10.
+
+var maximumWealth = function (accounts) {
+  let max = 0;
+  let sum = 0;
+
+  for (let i = 0; i < accounts.length; i++) {
+    // accounts[i]사람을 접근
+
+    for (let j = 0; j < accounts[i].length; j++) {
+      // accounts[i]사람의 은행들 접근
+      sum += accounts[i][j]; // i 사람의 은행잔고 총합구하기
+    }
+
+    if (sum > max) max = sum; // 가장 높은 전재산값 저장하기
+    sum = 0; // 다음 i 사람의 은행잔고 총합을 구하기전 초기화
+  }
+  return max;
+};
