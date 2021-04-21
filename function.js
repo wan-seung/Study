@@ -105,20 +105,34 @@ console.log(simplePrint());
 })();
 
 function calculate(command, a, b) {
-  if (command === 'sum') {
-    return a + b;
-  }
-  if (command === 'substract') {
-    return a - b;
-  }
-  if (command === 'divide') {
-    return a / b;
-  }
-  if (command === 'multiply') {
-    return a * b;
-  }
-  if (command === 'remainder') {
-    return a % b;
+  // if (command === 'sum') {
+  //   return a + b;
+  // }
+  // if (command === 'substract') {
+  //   return a - b;
+  // }
+  // if (command === 'divide') {
+  //   return a / b;
+  // }
+  // if (command === 'multiply') {
+  //   return a * b;
+  // }
+  // if (command === 'remainder') {
+  //   return a % b;
+  // }
+  switch (command) {
+    case 'add':
+      return a + b;
+    case 'substract':
+      return a - b;
+    case 'divide':
+      return a / b;
+    case 'multiply':
+      return a * b;
+    case 'remainder':
+      return a % b;
+    default:
+      throw Error('Unknown Command');
   }
 }
 
