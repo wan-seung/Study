@@ -132,3 +132,52 @@ multiply = function (a, b) {
   // 변수의 할당부는 원래 자리에 남겨둡니다.
   return a * b;
 };
+
+//예제 2-11 함수 선언문의 위험성
+console.log(sum(3, 4));
+
+function sum(x, y) {
+  return x + y;
+}
+
+var a = sum(1, 2);
+a;
+
+function sum(x, y) {
+  return x + '+' + y + '=' + (x + y);
+}
+
+var c = sum(1, 2);
+console.log(c);
+
+//예제 2-12 상대적으로 함수 표현식이 안전하다.
+
+console.log(sum(3, 4)); // Uncaught Type Error: sum is not a function
+
+var sum = function (x, y) {
+  return x + y;
+};
+
+var a = sum(1, 2);
+
+var sum = function (x, y) {
+  return x + '+' + y + '=' + (x + y);
+};
+
+var c = sum(1, 2);
+console.log(c);
+
+// 2-3-2 스코프, 스코프체인, outerEnvironmentReference
+//예제 2-13 scopeChain
+
+var a = 1;
+var outer = function () {
+  var inner = function () {
+    console.log(a);
+    var a = 3;
+  };
+  inner();
+  console.log(a);
+};
+outer();
+console.log(a);
