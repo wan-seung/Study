@@ -181,3 +181,90 @@ var outer = function () {
 };
 outer();
 console.log(a);
+
+// 3. This
+
+//예제 3-1 전역 공간에서의 this(브라우저 환경)
+console.log(this);
+console.log(window);
+console.log(this === window); // true
+
+//예제 3-2 전역 공간에서의 this(node.js 환경)
+console.log(this);
+console.log(global);
+console.log(this === global);
+
+//예제 3-3 전역변수와 전역객체(1)
+var a = 1;
+console.log(a);
+console.log(window.a);
+console.log(global.a);
+console.log(this.a);
+// 자바스크립트의 모든 변수는 실은 특정 객체의 프로퍼티로서 동작한다.
+
+//예제 3-4 전역변수와 전역객체(2)
+var a = 1;
+window.b = 2;
+console.log(a, window.a, this.a); // 1 1 1
+console.log(b, window.b, this.b); // 2 2 2
+
+window.a = 3;
+b = 4;
+console.log(a, window.a, this.a); // 3 3 3
+console.log(b, window.b, this.b); // 4 4 4
+
+//예제 3-5 전역변수와 전역객체(3)
+var a = 1;
+delete window.a; // false
+// console.log(a, window.a, this.a)
+
+var b = 2;
+delete b; // false
+// console.log(b, window.b, this.b)
+
+window.c = 3;
+delete window.c; // true
+console.log(c, window.c, this.c); // Uncaught ReferenceError: c is not defined
+
+window.d = 4;
+delete d; // true
+console.log(d, window.d, this.d);
+
+//예제 3-6 함수로서 호출, 메서드로서 호출
+var func = function (x) {
+  console.log(this, x);
+};
+func(1); // Window{ . . .} 1
+
+var obj = {
+  method: func,
+};
+obj.method(2); // { method: f } 2
+
+//예제 3-7 메서드로서 호출 - 점 표기법, 대괄호 표기법
+var obj = {
+  method: function (x) {
+    console.log(this, x);
+  },
+};
+obj.method(1); // { method: f } 1
+obj['method'](2); // { method: f } 2
+
+//예제 3-8 메서드 내부에서의 this
+var obje = {
+  methodA: function () {
+    console.log(this);
+  },
+  inner: {
+    methodB: function () {
+      console.log(this);
+    },
+  },
+};
+obje.methodA(); // === obj
+obje['methodA'](); // === obj
+
+obje.inner.methodB(); // === obj.inner
+obje.inner['methodB'](); // === obj.inner
+obje['inner'].methodB(); // === obj.inner
+obje['inner']['methodB'](); // === obj.inner
