@@ -268,3 +268,122 @@ obje.inner.methodB(); // === obj.inner
 obje.inner['methodB'](); // === obj.inner
 obje['inner'].methodB(); // === obj.inner
 obje['inner']['methodB'](); // === obj.inner
+
+//예제 3-9 내부함수에서의 this
+var obj1 = {
+  outer: function () {
+    console.log(this); // (1)
+    var innerFunc = function () {
+      console.log(this); // (2)
+    };
+    innerFunc();
+
+    var obj2 = {
+      innerMethod: innerFunc,
+    };
+    obj2.innerMethod(); // (3)
+  },
+};
+obj1.outer();
+
+//예제 3-10 내부함수에서의 this를 우회하는 방법
+var obj = {
+  outer: function () {
+    console.log(this); // (1) { outer : f }
+    var innerFunc1 = function () {
+      console.log(this); // (2) Window { . . .}
+    };
+    innerFunc1();
+
+    var self = this;
+    var innerFunc2 = function () {
+      console.log(self); // (3) { outer : f }
+    };
+    innerFunc2();
+  },
+};
+obj.outer();
+
+//예제 3-11 this를 바인딩하지 않는 함수(화살표 함수)
+var obj = {
+  outer: function () {
+    console.log(this);
+    var innerFunc = () => {
+      console.log(this);
+    };
+    innerFunc();
+  },
+};
+obj.outer();
+// >>>> ES6에서 화살표함수에 대한 장점 : 실행 컨텍스트를 생성할 때 this 바인딩 과정 자체가 빠지게 되어, 상위 스코프의 this를 그대로 활용할 수 있다.
+
+//3-1-4 콜백 함수 호출 시 그 함수 내부에서의 this
+
+//예제 3-12 콜백 함수 내부에서의 this
+setTimeout(function () {
+  console.log(this);
+}, 300); // (1)
+
+[1, 2, 3, 4, 5].forEach(function (x) {
+  //(2)
+  console.log(this, x);
+});
+document.body.innerHTML += '<button id="a">클릭</button>';
+document.body.querySelector('#a').addEventListener('click', function (e) {
+  // (3)
+  console.log(this, e);
+});
+
+// 3-1-5 생성자 함수 내부에서의 this
+// 생성자 함수는 어떤 공통된 성질을 지니는 객체들을 생성하는 데 사용하는 함수.
+// 객체지향 언어에서는 생성자를 클래스(class), 클래스를 통해 만든 객체를 인스턴스(instance)라고 합니다
+//예제 3-13 생성자 함수
+var Cat = function (name, age) {
+  this.bark = '야옹';
+  this.name = name;
+  this.age = age;
+};
+
+var choco = new Cat('초코', 7);
+var nabi = new Cat('나비', 5);
+console.log(choco, nabi);
+
+// 명시적으로 this를 바인딩하는 방법
+// 3-2-1 call 메서드
+// Function.prototype.call(thisArg[, arg1[, arg2[, ...]]])
+//예제 3-14 call 메서드(1)
+
+var func = function (a, b, c) {
+  console.log(this, a, b, c);
+};
+
+func(1, 2, 3); // window{...} 1 2 3
+func.call({ x: 1 }, 4, 5, 6); // { x: 1} 4 5 6
+
+//예제 3-15 call 메서드(2)
+
+var obj = {
+  a: 1,
+  method: function (x, y) {
+    console.log(this.a, x, y);
+  },
+};
+obj.method(2, 3); // 1 2 3
+obj.method.call({ a: 4 }, 5, 6); // 4 5 6
+
+// 3-2-2 apply 메서드
+// Function.prototype.apply(thisArg[, argsArray])
+//예제 3-16 apply 메서드
+var func = function (a, b, c) {
+  console.log(this, a, b, c);
+};
+func.apply({ x: 1 }, [4, 5, 6]); // { x : 1 } 4 5 6
+
+var obj = {
+  a: 1,
+  method: function (x, y) {
+    console.log(this.a, x, y);
+  },
+};
+
+obj.method.apply({ a: 4 }, [5, 6]); // 4 5 6
